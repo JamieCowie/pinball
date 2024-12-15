@@ -1,12 +1,11 @@
-
 using UnityEngine;
 
 public class LineForce : MonoBehaviour
 {
-    [SerializeField] private float shotPower = .05f;
-    [SerializeField] private float stopVelocity = .05f;
+    [SerializeField] private float shotPower;
+    [SerializeField] private float stopVelocity = .05f; //The velocity below which the rigidbody will be considered as stopped
 
-   [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private LineRenderer lineRenderer;
 
     private bool isIdle;
     private bool isAiming;
@@ -15,7 +14,7 @@ public class LineForce : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody = GetComponent<rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
 
         isAiming = false;
         lineRenderer.enabled = false;
@@ -27,6 +26,7 @@ public class LineForce : MonoBehaviour
         {
             Stop();
         }
+
         ProcessAim();
     }
 
@@ -40,22 +40,24 @@ public class LineForce : MonoBehaviour
 
     private void ProcessAim()
     {
-        if (!isAiming || !isIdle) 
+        if (!isAiming || !isIdle)
         {
             return;
         }
+
         Vector3? worldPoint = CastMouseClickRay();
+
         if (!worldPoint.HasValue)
         {
             return;
         }
+
         DrawLine(worldPoint.Value);
 
         if (Input.GetMouseButtonUp(0))
         {
             Shoot(worldPoint.Value);
-        } 
-
+        }
     }
 
     private void Shoot(Vector3 worldPoint)
@@ -68,18 +70,17 @@ public class LineForce : MonoBehaviour
         Vector3 direction = (horizontalWorldPoint - transform.position).normalized;
         float strength = Vector3.Distance(transform.position, horizontalWorldPoint);
 
-        rigidbody.AddForce(direction * strength * shotPower);
+        rigidbody.AddForce(-direction * strength * shotPower);
         isIdle = false;
     }
 
-    private void DrawLine(Vectror3 worldPoint)
+    private void DrawLine(Vector3 worldPoint)
     {
-        Vector3[] position =
-        {
+        Vector3[] positions = {
             transform.position,
-            worldpoint };
+            worldPoint};
         lineRenderer.SetPositions(positions);
-        lineRenderer.enable = true;
+        lineRenderer.enabled = true;
     }
 
     private void Stop()
@@ -100,9 +101,9 @@ public class LineForce : MonoBehaviour
             Input.mousePosition.y,
             Camera.main.nearClipPlane);
         Vector3 worldMousePosFar = Camera.main.ScreenToWorldPoint(screenMousePosFar);
-        Vector3 worldMousePosNear = Camera.main.ScreenToWorldPoint(worldMousePosNear);
+        Vector3 worldMousePosNear = Camera.main.ScreenToWorldPoint(screenMousePosNear);
         RaycastHit hit;
-        if (Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit, float.PositiveInfinty))
+        if (Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit, float.PositiveInfinity))
         {
             return hit.point;
         }
