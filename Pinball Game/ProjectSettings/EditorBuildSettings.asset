@@ -9,9 +9,39 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: e1cf6739c43f3f14d98bcc4dc73de077
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/Map1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Settings.unity
     guid: 22bfd0ccbeaf1804eb9190320f22b653
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 4bd62d21635e16b4795ec8685a67a472
+  - enabled: 1
+    path: Assets/Scenes/Map2.unity
+    guid: fe62ed960caf2d6418e1d719ff298c4b
+  - enabled: 1
+    path: Assets/Scenes/Map3.unity
+    guid: 282e8ce615f98ad41be0667934214dd2
+  - enabled: 1
+    path: Assets/Scenes/Map4.unity
+    guid: 2e4abba87d5e7b64c9f9a7915b005c83
+  - enabled: 1
+    path: Assets/Scenes/Map5.unity
+    guid: 3f25eb840640b5647a77e3ce3c0b8537
+  - enabled: 1
+    path: Assets/Scenes/Map6.unity
+    guid: d3f1571b831f9234eba5a2d4714259b8
+  - enabled: 1
+    path: Assets/Scenes/Map7.unity
+    guid: d4b916d505dafe048833aebee3ea2bbc
+  - enabled: 1
+    path: Assets/Scenes/Map8.unity
+    guid: 844ee91da68ea204d8ff0b6e209df257
+  - enabled: 1
+    path: Assets/Scenes/Map9.unity
+    guid: 3b0172b32071fe14d809c17a737c9fd6
+  - enabled: 1
+    path: Assets/Scenes/Map10.unity
+    guid: 07c42c6c42ad3b947826b23041681e0f
   m_configObjects: {}
